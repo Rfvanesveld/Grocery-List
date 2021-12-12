@@ -1,18 +1,18 @@
+import React from "react"
 import './App.css';
-import List from './Components/List';
+import Container from "./Components/Container"
 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Richard's GroceryList</h1>
-
-        <List />
-
+        <h1> Richard's Grocery List</h1>
       </header>
-    </div>);
+      <Container />
+
+    </div>
+  );
 }
 
 export default App;
-
