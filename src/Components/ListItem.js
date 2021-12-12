@@ -1,24 +1,22 @@
-import React from 'react';
+import React from "react"
 
 function ListItem(props) {
-
-    const title = props.groceryItems.map(item => {
-        return (
-            <li className="listItem"
-                key={item.id}
-                value={item.title}>
-                {/* onClick={clickItem} */}
-                {item.title}
-            </li>
-        )
-    })
+    const item = props.item
     return (
-        <div>
-            <ul>{title}</ul>
-        </div>)
+        <li
+            className="List-Item"
+            key={item.id}
+            value={item.title}
+            onClick={() => props.onClick(item.title)}
+        >
+            <div> {item.title} </div>
 
+        </li>
+    )
 }
 
 export default ListItem
+
+
 
 
