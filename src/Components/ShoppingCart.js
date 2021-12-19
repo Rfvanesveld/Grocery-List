@@ -3,7 +3,7 @@ import List from "./List"
 
 function ShoppingCart(props) {
     return (
-        <div className='shopping-cart'>
+        <div className='Shopping-Cart'>
             <h2>SHOPPING CART</h2>
 
             <button

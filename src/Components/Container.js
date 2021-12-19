@@ -20,11 +20,30 @@ class Container extends React.Component {
 
             ]
         }
-        this.addGroceryListItemtoCart = this.addGroceryListItemtoCart.bind(this)
-        this.emptyShoppingCart = this.emptyShoppingCart.bind(this)
+        this.addItemtoList = this.addItemtoList.bind(this)
+        this.addItemtoCart = this.addItemtoCart.bind(this)
+        this.emptyCart = this.emptyCart.bind(this)
     }
 
-    addGroceryListItemtoCart(name, value) {
+    addItemtoList(title) {
+        if (title !== undefined && title !== null && title.length > 0) {
+            this.setState(prevState => {
+                console.log('add')
+                const Grocery_Items = [...prevState.Grocery_Items]
+                Grocery_Items.push({
+                    id: Grocery_Items.length + 1,
+                    title: title
+                })
+                return {
+                    Grocery_Items: Grocery_Items
+                }
+            })
+        }
+    }
+
+
+
+    addItemtoCart(name, value) {
 
         const newIteminCart = { id: value, title: name };
         this.setState(prevState => {
@@ -33,13 +52,13 @@ class Container extends React.Component {
             const newState = { ...prevState, ShoppingList_Items: ShoppingCartUpdated }
             return newState;
         })
-
     }
 
-    emptyShoppingCart() {
+
+
+    emptyCart() {
         this.setState({ ShoppingList_Items: [] })
     }
-
 
     render() {
         return (
@@ -48,14 +67,14 @@ class Container extends React.Component {
                 <Grocerylist
                     // className=".."
                     list={this.state.Grocery_Items}
-                    onClick={this.addGroceryListItemtoCart}
-
+                    onClick={this.addItemtoCart}
+                    addClick={this.addItemtoList}
                 />
                 <ShoppingCart
                     // className=".."
                     list={this.state.ShoppingList_Items}
-                    onClick={this.addGroceryListItemtoCart}
-                    emptyClick={this.emptyShoppingCart}
+                    onClick={this.addItemtoCart}
+                    emptyClick={this.emptyCart}
                 />
 
             </div>
