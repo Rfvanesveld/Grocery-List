@@ -2,37 +2,50 @@ import React from "react"
 import Grocerylist from "./GroceryList";
 import ShoppingCart from "./ShoppingCart";
 
+
 class Container extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             Grocery_Items: [
-                { id: 1, title: "Cheese Onion chips" },
-                { id: 2, title: "Paprika chips" },
-                { id: 3, title: "Coca Cola" },
-                { id: 4, title: "Heineken" }
+                { id: 1, title: "Cheese Onion chips", amount: 1 },
+                { id: 2, title: "Paprika chips", amount: 1 },
+                { id: 3, title: "Coca Cola", amount: 1 },
+                { id: 4, title: "Heineken", amount: 1 }
             ],
             ShoppingList_Items: [
-                { id: 1, title: "Halfvolle melk" },
-                { id: 2, title: "Bruin brood" },
-                { id: 3, title: "Biefstuk worst" },
-                { id: 4, title: "48+ Kaas" }
+                { id: 1, title: "Halfvolle melk", amount: 1 },
+                { id: 2, title: "Bruin brood", amount: 1 },
+                { id: 3, title: "Biefstuk worst", amount: 1 },
+                { id: 4, title: "48+ Kaas", amount: 1 }
 
             ]
         }
-        this.addItemtoList = this.addItemtoList.bind(this)
-        this.addItemtoCart = this.addItemtoCart.bind(this)
         this.emptyCart = this.emptyCart.bind(this)
+        this.addtoList = this.addtoList.bind(this)
+        this.addtoCart = this.addtoCart.bind(this)
     }
 
-    addItemtoList(title) {
+    emptyCart() {
+
+        let newState = this.state.Grocery_Items.map((input) => {
+            input.amount = 1;
+            return input;
+        });
+        this.setState({
+            ShoppingList_Items: [],
+            Grocery_Items: newState,
+        });
+    }
+
+    addtoList(title) {
         if (title !== undefined && title !== null && title.length > 0) {
             this.setState(prevState => {
-                console.log('add')
                 const Grocery_Items = [...prevState.Grocery_Items]
                 Grocery_Items.push({
                     id: Grocery_Items.length + 1,
-                    title: title
+                    title: title,
+                    amount: 1
                 })
                 return {
                     Grocery_Items: Grocery_Items
@@ -41,23 +54,31 @@ class Container extends React.Component {
         }
     }
 
+    addtoCart = (title) => {
 
+        if (title !== undefined && title !== null && title.length > 0) {
+            this.setState(prevState => {
+                const ShoppingList_Items = [...prevState.ShoppingList_Items]
 
-    addItemtoCart(name, value) {
+                const shoppingList_Item = ShoppingList_Items.find(item => {
+                    return item.title === title
+                })
 
-        const newIteminCart = { id: value, title: name };
-        this.setState(prevState => {
-            const ShoppingCartUpdated = [...prevState.ShoppingList_Items];
-            ShoppingCartUpdated.push(newIteminCart);
-            const newState = { ...prevState, ShoppingList_Items: ShoppingCartUpdated }
-            return newState;
-        })
-    }
+                if (shoppingList_Item !== undefined) {
+                    shoppingList_Item.amount++;
 
-
-
-    emptyCart() {
-        this.setState({ ShoppingList_Items: [] })
+                } else {
+                    ShoppingList_Items.push({
+                        id: ShoppingList_Items.length + 1,
+                        title: title,
+                        amount: 1
+                    })
+                }
+                return {
+                    ShoppingList_Items: ShoppingList_Items
+                }
+            })
+        }
     }
 
     render() {
@@ -67,13 +88,13 @@ class Container extends React.Component {
                 <Grocerylist
                     // className=".."
                     list={this.state.Grocery_Items}
-                    onClick={this.addItemtoCart}
-                    addClick={this.addItemtoList}
+                    onClick={this.addtoCart}
+                    addClick={this.addtoList}
                 />
                 <ShoppingCart
                     // className=".."
                     list={this.state.ShoppingList_Items}
-                    onClick={this.addItemtoCart}
+                    onClick={this.addtoCart}
                     emptyClick={this.emptyCart}
                 />
 
@@ -83,6 +104,4 @@ class Container extends React.Component {
 }
 
 export default Container
-
-
 

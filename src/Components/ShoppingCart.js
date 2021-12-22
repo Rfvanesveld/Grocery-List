@@ -7,7 +7,8 @@ function ShoppingCart(props) {
             <h2>SHOPPING CART</h2>
 
             <button
-                onClick={props.emptyClick}> EMPTY CART
+                onClick={() => props.emptyClick()}>
+                EMPTY CART
             </button>
 
             <List
