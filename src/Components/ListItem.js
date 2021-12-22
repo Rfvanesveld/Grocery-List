@@ -9,7 +9,7 @@ function ListItem(props) {
             value={item.title}
             onClick={() => props.onClick(item.title)}
         >
-            <div> {item.title} </div>
+            <div> {item.amount} {item.title} </div>
 
         </li>
     )
