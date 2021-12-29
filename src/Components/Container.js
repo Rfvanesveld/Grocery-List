@@ -84,20 +84,22 @@ class Container extends React.Component {
     render() {
         return (
             <div className="Container">
+                <div className="Groceries-List Groceries">
+                    <Grocerylist
+                        list={this.state.Grocery_Items}
+                        onClick={this.addtoCart}
+                        addClick={this.addtoList}
+                    />
+                </div>
 
-                <Grocerylist
-                    // className=".."
-                    list={this.state.Grocery_Items}
-                    onClick={this.addtoCart}
-                    addClick={this.addtoList}
-                />
-                <ShoppingCart
-                    // className=".."
-                    list={this.state.ShoppingList_Items}
-                    onClick={this.addtoCart}
-                    emptyClick={this.emptyCart}
-                />
+                <div className="Shopping-Cart Shopping-Items">
+                    <ShoppingCart
 
+                        list={this.state.ShoppingList_Items}
+                        onClick={this.addtoCart}
+                        emptyClick={this.emptyCart}
+                    />
+                </div>
             </div>
         )
     }

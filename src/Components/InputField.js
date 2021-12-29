@@ -15,18 +15,18 @@ class InputField extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="Groceries-Input">
 
-                <button
+                <button className="Button"
                     onClick={() => {
                         this.setState({ input: "" })
                         this.props.click(this.state.input)
-                    }}>  Add to List
+                    }}>  ADD TO LIST
                 </button>
 
                 <input
                     type="text"
-                    className=".."
+                    className="Inputfield"
                     value={this.state.input}
                     onChange={this.handleChange}
                     placeholder="Which Groceries are needed?"

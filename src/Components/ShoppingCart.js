@@ -3,10 +3,10 @@ import List from "./List"
 
 function ShoppingCart(props) {
     return (
-        <div className='Shopping-Cart'>
+        <div>
             <h2>SHOPPING CART</h2>
 
-            <button
+            <button className="Button"
                 onClick={() => props.emptyClick()}>
                 EMPTY CART
             </button>
