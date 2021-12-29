@@ -4,9 +4,7 @@ import InputField from "./InputField"
 
 function Grocerylist(props) {
     return (
-        <div
-            className='Grocery-List'
-        >
+        <div>
             <h2>GROCERY LIST</h2>
             <InputField
                 click={props.addClick} />
